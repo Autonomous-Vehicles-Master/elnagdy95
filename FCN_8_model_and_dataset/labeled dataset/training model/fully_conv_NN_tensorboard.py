@@ -49,8 +49,10 @@ train_images, labels = shuffle(train_images, labels)
 X_train, X_val, y_train, y_val = train_test_split(train_images, labels, test_size=0.1)
 
 # Batch size, epochs and pool size below are all paramaters to fiddle with for optimization
-batch_size = 16
-epochs = 20
+#16
+batch_size = 32
+#20
+epochs = 60
 pool_size = (2, 2)
 input_shape = X_train.shape[1:]
 
@@ -143,7 +145,7 @@ datagen = ImageDataGenerator(channel_shift_range=0.2)
 datagen.fit(X_train)
 
 # Compiling and training the model
-model.compile(optimizer='Adam', loss='mean_squared_error')
+model.compile(optimizer='Adam', loss='mean_squared_error', metrics=['accuracy'])
 model.fit_generator(datagen.flow(X_train, y_train, batch_size=batch_size), steps_per_epoch=len(X_train)/batch_size,
 epochs=epochs, verbose=1, validation_data=(X_val, y_val), callbacks=[tensorboard_callback])
 
