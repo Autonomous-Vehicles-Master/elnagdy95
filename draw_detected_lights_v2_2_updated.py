@@ -45,7 +45,7 @@ def taillight_detect(image):
     recreates an RGB image of a lane and merges with the
     original road image.
     """
-    model = load_model('full_CNN_model.h5')
+    model = load_model('full_CNN_model_60_36.h5')
     #image1=image
     #image1=np.array(image1)
     #objects=np.squeeze(image,2)
@@ -149,7 +149,7 @@ def taillight_detect(image):
     mask=mask.astype(np.uint8)
     for i in range(rows):
         for j in range(cols):
-            if auto[i,j] >0 and mask [i,j]>10:
+            if auto[i,j] >0 and mask [i,j]>1:
                 auto[i,j]=255
             else:
                 auto[i,j]=0
@@ -191,7 +191,7 @@ def taillight_detect(image):
     
     for i in range(rows):
         for j in range(cols):
-            if auto[i,j]>15:
+            if auto[i,j]>1:
                 auto[i,j]=255
             else:
                 auto[i,j]=0
